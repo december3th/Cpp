@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define tester()	int t;cin >> t;while(t--)
+#define FOR(i,a,b)	for(int i = a;i < b;i++)
+char a[100][100];
+int n,m;
+pair<int,int>check[4]={{0,-1},{-1,0},{0,1},{1,0}};
+void change(int i,int j)
+{
+	a[i][j]='*';
+	for(int k = 0;k < 4;k++)
+	{
+		int j1 = j + check[k].second , i1 = i + check[k].first ;
+		if(i1 >= 0 && i1 < n && j1 >= 0&& j1 < m &&a[i1][j1]=='O')
+		{
+			change(i1,j1);
+		}
+	}
+}
+main()
+{
+	tester()
+	{
+		cin >> n>>m;
+		FOR(i,0,n)	FOR(j,0,m)	cin >> a[i][j];
+		FOR(i,0,n)
+		{
+			if(a[i][0]=='O')	change(i,0);
+			if(a[i][m-1]=='O')	change(i,m-1);
+		}
+		FOR(j,0,m)
+		{
+			if(a[0][j]=='O')	change(0,j);
+			if(a[n-1][j]=='O')	change(n-1,j);
+		}
+		FOR(i,0,n)
+		{
+			FOR(j,0,m)
+			{
+				if(a[i][j]=='*')	cout << "O ";
+				else cout << "X ";
+			}
+			cout << endl;
+		}
+	}
+}

@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define tester()	int t;cin >> t;while(t--)
+#define FOR(i,a,b)	for(int i = a;i < b;i++)
+#define MIN -1e6;
+int a[500][500];int b[500];
+int n,m,maxx = 0;
+void nhap(int n,int m)
+{
+	FOR(i,0,n)
+	{
+		FOR(j,0,m)	cin >> a[i][j];
+	}
+	maxx=0;
+}
+void hensin(int n,int m)
+{
+	FOR(i,1,n)
+	{
+		FOR(j,0,m)	if(a[i][j]>0)	a[i][j] = a[i-1][j]+1;
+	}
+}
+void dapan(int n,int m)
+{
+	FOR(i,0,n)
+	{
+		stack<int>st;
+		int j = 0;
+		while(j<m)
+		{
+			if(st.empty()|| a[i][j]>a[i][st.top()])
+			{
+				st.push(j);
+				j++;
+			}
+			else 
+			{
+				int left = st.top();
+				st.pop();
+				if(st.empty())	maxx = max(maxx,min(j,a[i][left]));
+				else maxx = max(maxx,min(j-1-st.top(),a[i][left]));
+			}
+		}
+		while(!st.empty())
+		{
+			int left = st.top();
+			st.pop();
+			if(st.empty())	maxx = max(maxx,min(j,a[i][left]));
+			else maxx = max(maxx,min((j-1-st.top()),a[i][left]));
+		}
+	}
+}
+main()
+{
+	tester()
+	{
+		cin >> n>>m;
+		nhap(n,m);
+		hensin(n,m);
+		dapan(n,m);
+		cout << maxx<<endl;
+	}
+}
+

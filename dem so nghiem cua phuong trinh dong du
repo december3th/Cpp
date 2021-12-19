@@ -1,0 +1,25 @@
+#include<iostream> 
+#include<math.h> 
+using namespace std;
+main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		long long b,p;
+		cin >> b >> p;
+		int dem = 0,dem2= 0;
+		int m = b%p;
+		for(long long i = 1;i < p;i++)
+		{
+			if(i*i%p==1) 
+			{
+				dem++;
+				if(i<=m)	dem2++;
+			}
+		}
+		int as = b/p;\
+		cout << as*dem+dem2 <<endl;
+	}
+}

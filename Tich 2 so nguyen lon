@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+#define FOR(i,a,b)	for(int i =a;i < b;i++)
+#define rFOR(i,a,b)	for(int i =a;i >= 0;i--)
+#define test()	int t;cin >> t;while(t--)
+using namespace std;
+int main(){
+	test()
+	{
+		string s1,s2;
+		cin >> s1 >> s2;
+		int z = s1.size()+s2.size();
+		long long a[z]={};
+		int i,j,x,b=1;
+		rFOR(i,s2.size()-1,0)
+		{
+			x=z+i-s2.size();
+			rFOR(j,s1.size()-1,0)
+			{
+				a[x]=a[x]+(int)(s2[i]-'0')*(s1[j]-'0');
+				x--;
+			}
+		}
+		string kq="";
+		long long n=0;
+		rFOR(i,z-1,0)
+		{
+			a[i]+=n;
+			kq=to_string(a[i]%10)+kq;
+			n=a[i]/10;
+		}
+		while(kq[0]=='0') kq=kq.substr(1,kq.size()-1);
+		cout<<kq<<endl;
+	}
+}

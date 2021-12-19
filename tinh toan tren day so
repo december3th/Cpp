@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define tester()	int t;cin >> t;while(t--)
+#define FOR(i,a,b)	for(int i = a;i < b;i++)
+long long mod = 1e9+7;
+long long as(long long a,long long b)
+{
+	if (a==0)	return 0;
+	if(b==1)	return a;
+	long long x = as(a,b/2);
+	if(b%2==0)	return (x*x)%mod;
+	else return ((x*x)%mod*a)%mod;	
+}
+main()
+{
+	
+	tester()
+	{
+		long long n,x,gcd,t=1;
+		cin >> n;
+		FOR(i,0,n)
+		{
+			cin >> x;
+			if(i==0)	gcd=x;
+			else 
+			{
+				gcd=__gcd(gcd,x);
+			}
+			t=(t%mod*x%mod)%mod;
+		}
+		cout << as(t,gcd) << endl;
+	}
+}

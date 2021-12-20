@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    vector<int> a, b, c;
+    ifstream fp;
+    fp.open("DATA.in");
+    int m ; int dem=0;
+    while(fp>>m){
+        a.push_back(m);
+    }
+    fp.close();
+    int ar[10000+5]={0};
+    int ar1[10000+5]={0};
+    int fi = a[0];
+    for(int i=2;i<2+fi;i++){
+        b.push_back(a[i]);
+        ar[a[i]]++;
+    }
+    for(int i=fi+2;i<a.size();i++){
+        c.push_back(a[i]);
+        ar1[a[i]]++;
+    }
+    for(int i=1;i<10000+5;i++){
+        if(ar[i]!=0 && ar1[i]!=0){
+            cout << i << " " ;
+        }
+    }
+}

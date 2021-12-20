@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std ;
+string chuanhoa(string s){
+    string tmp ="";
+    for(int i=0;i<s.size();i++){
+        s[i] =tolower(s[i]);
+        tmp = tmp+s[i];
+    }
+    return tmp ;
+}
+int main(){
+    set<string>a,b;
+    set<string> ans,bns;
+    ifstream fp;
+    ifstream fp1;
+    fp.open("DATA1.in");
+    string xx ;
+    while(fp>>xx){
+        a.insert(chuanhoa(xx));
+    }
+    fp.close();
+    fp1.open("DATA2.in");
+    string xh ;
+    while(fp1>>xh){
+        b.insert(chuanhoa(xh));
+    }
+    fp1.close();
+    for(auto x : a){
+        ans.insert(x);
+    }
+    for(auto xx : b){
+        ans.insert(xx);
+    }
+    for(auto ax : ans){
+        cout << ax << " " ;
+    }
+    cout << endl ;
+    for(auto x : a){
+        if(b.count(x)!=0){
+            bns.insert(x);
+        }
+    }
+    for(auto ii : bns){
+        cout << ii << " " ;
+    }
+    return 0 ;
+}
